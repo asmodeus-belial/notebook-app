@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  context: MyText
+  emoji_category: MyString
+  notebook: one
+
+two:
+  title: MyString
+  context: MyText
+  emoji_category: MyString
+  notebook: two
