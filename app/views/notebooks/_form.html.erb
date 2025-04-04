@@ -1,0 +1,37 @@
+<%= form_with(model: notebook, local: true) do |form| %>
+  <% if notebook.errors.any? %>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+      <h2 class="font-bold"><%= pluralize(notebook.errors.count, "error") %> prohibited this notebook from being saved:</h2>
+      <ul class="list-disc pl-5">
+        <% notebook.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+    <% if new_notebook_path %>
+      <h2 class="text-2xl font-semibold text-gray-800 text-center">Create a New Notebook</h2>
+      <p class="mt-2 text-gray-600 text-center">Fill in the details below to create a new notebook.</p>
+    <% else %>
+      <h2 class="text-2xl font-semibold text-gray-800 text-center">Edit Notebook</h2>
+      <p class="mt-2 text-gray-600 text-center">Update the details below to edit the notebook.</p>
+    <% end %>
+    <form class="mt-6">
+      <div class="mb-4">
+        <%= form.label :title, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.text_field :title, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400' %>
+      </div>
+      <div class="mb-4">
+        <%= form.label :description, class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <%= form.text_area :description, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400' %>
+      </div>
+      <div class="flex items-center justify-center">
+        <%= form.submit class: 'bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600' %>
+      </div>
+    </form>
+  </div>
+<% end %>
+
+    

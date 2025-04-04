@@ -1,0 +1,54 @@
+<%= form_with(model: page, local: true) do |form| %>
+  <% if page.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(page.errors.count, "error") %> prohibited this page from being saved:</h2>
+      <ul>
+        <% page.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+    <% if new_page_path %>
+      <h2 class="text-2xl font-semibold text-gray-800 text-center">Create a New page</h2>
+      <p class="mt-2 text-gray-600 text-center">Fill in the details below to create a new page.</p>
+    <% else %>
+      <h2 class="text-2xl font-semibold text-gray-800 text-center">Edit page</h2>
+      <p class="mt-2 text-gray-600 text-center">Update the details below to edit the page.</p>
+    <% end %>
+    <form class="mt-6">
+      <div class="mb-4">
+        <%= form.label :title, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.text_field :title, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400' %>
+      </div>
+      <div class="mb-4">
+        <%= form.label :context, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.text_field :context, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400' %>
+      </div>
+      <div class="mb-3">
+        <%= form.label :emoji_category, 'Emoji Category', class: 'form-label' %>
+        <%= form.select :emoji_category, 
+                    [
+                      ['None', ''],
+                      ['Smileys and People', 'smileys-and-people'],
+                      ['Animals and Nature', 'animals-and-nature'],
+                      ['Food and Drink', 'food-and-drink'],
+                      ['Travel and Places', 'travel-and-places'],
+                      ['Activities', 'activities'],
+                      ['Objects', 'objects'],
+                      ['Symbols', 'symbols'],
+                      ['Flags', 'flags']
+                    ],
+                    {}, class: 'form-control' %>
+      </div>
+      <div class="mb-4">
+        <%= form.label :notebook_id, class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <%= form.collection_select :notebook_id, Notebook.all, :id, :title, { prompt: 'Select a Notebook' }, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400' %>
+      </div>
+      <div class="flex items-center justify-center">
+        <%= form.submit class: 'bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600' %>
+      </div>
+    </form>
+  </div>
+<% end %>
