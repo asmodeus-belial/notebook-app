@@ -1,5 +1,5 @@
 class NotebooksController < ApplicationController
-  before_action :set_notebook, only: %i[ show edit update destroy ]
+  before_action :set_notebook, only: %i[show edit update destroy]
 
   def index
     @notebooks = Notebook.all
@@ -33,13 +33,15 @@ class NotebooksController < ApplicationController
 
   def destroy
     @notebook.destroy
-    redirect_to notice: "Notebook was successfully deleted"
+    redirect_to notebooks_path, notice: "Notebook was successfully deleted"
   end
 
   private
 
   def set_notebook
     @notebook = Notebook.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to notebooks_path, alert: "Notebook not found"
   end
 
   def notebook_params

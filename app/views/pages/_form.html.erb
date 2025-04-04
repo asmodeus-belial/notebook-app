@@ -27,20 +27,10 @@
         <%= form.text_field :context, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400' %>
       </div>
       <div class="mb-3">
-        <%= form.label :emoji_category, 'Emoji Category', class: 'form-label' %>
-        <%= form.select :emoji_category, 
-                    [
-                      ['None', ''],
-                      ['Smileys and People', 'smileys-and-people'],
-                      ['Animals and Nature', 'animals-and-nature'],
-                      ['Food and Drink', 'food-and-drink'],
-                      ['Travel and Places', 'travel-and-places'],
-                      ['Activities', 'activities'],
-                      ['Objects', 'objects'],
-                      ['Symbols', 'symbols'],
-                      ['Flags', 'flags']
-                    ],
-                    {}, class: 'form-control' %>
+        <%= form.label :emoji_category %>
+    <%= form.collection_select :emoji_category, @categories, :itself, :itself, 
+                              { prompt: "Select a category" }, 
+                              { class: "form-control" } %>
       </div>
       <div class="mb-4">
         <%= form.label :notebook_id, class: 'block text-gray-700 text-sm font-bold mb-2' %>

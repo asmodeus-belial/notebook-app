@@ -1,5 +1,5 @@
 class Page < ApplicationRecord
   belongs_to :notebook
-  validate :title, presence: true
-  validate :content, presence: true
+  validates :title, presence: true
+  validates :context, presence: true
 end
